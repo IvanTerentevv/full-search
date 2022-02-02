@@ -1,9 +1,7 @@
-import sys
 import requests
 
 
-def params():
-    toponym_to_find = " ".join(sys.argv[1:])
+def params(toponym_to_find):
     geocoder_api_server = "http://geocode-maps.yandex.ru/1.x/"
     geocoder_params = {
         "apikey": "40d1649f-0493-4b70-98ba-98533de7710b",
@@ -25,6 +23,7 @@ def params():
     map_params = {
         "ll": ",".join([toponym_longitude, toponym_lattitude]),
         "spn": ",".join(toponym_size),
-        "l": "map"
+        "l": "map",
+        "pt": f"{float(toponym_longitude)},{float(toponym_lattitude)},flag"
     }
     return map_params
